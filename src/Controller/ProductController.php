@@ -11,14 +11,21 @@ use Symfony\Component\Routing\Annotation\Route;
 class ProductController extends AbstractController
 {
     #[Route('/product', name: 'create_product')]
-    public function createProduct(ManagerRegistry $doctrine): Response {
+    public function createProduct(ManagerRegistry $doctrine): Response
+    {
         return new Response('<h1>hoi</h1');
     }
 
     #[Route('/show/product', name: 'show_product')]
-public function showProducts(ManagerRegistry $doctrine): Response{
-        $products=$doctrine->getRepository(Product::class)->findAll();
+    public function showProducts(ManagerRegistry $doctrine): Response
+    {
+        $products = $doctrine->getRepository(Product::class)->findAll();
         dd($products);
     }
 
+    #[Route("/", name: "home")]
+    public function showHome(): Response
+    {
+        return $this->render("home.html.twig");
+    }
 }
