@@ -20,7 +20,8 @@ class ProductController extends AbstractController
     public function showProducts(ManagerRegistry $doctrine): Response
     {
         $products = $doctrine->getRepository(Product::class)->findAll();
-        dd($products);
+       // dd($products);
+        return $this->render("showproducts.html.twig",['products'=> $products]);
     }
 
     #[Route("/", name: "home")]
