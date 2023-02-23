@@ -6,11 +6,13 @@
     <tr>
         <th>name</th>
         <th>price</th>
+        <th>category</th>
     </tr>
     {% for product in products %}
         <tr>
             <td>{{ product.name }}</td>
             <td>{{ product.price }}</td>
+            <td>{{ product.category.name }}</td>
         </tr>
     {% endfor %}
 </table>
