@@ -2,11 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\ProductRepository;
+use App\Repository\PizzaRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: ProductRepository::class)]
-class Product
+#[ORM\Entity(repositoryClass: PizzaRepository::class)]
+class Pizza
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -16,10 +16,10 @@ class Product
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\Column]
-    private ?int $price = null;
+    #[ORM\Column(length: 255)]
+    private ?string $picture = null;
 
-    #[ORM\ManyToOne(inversedBy: 'yes')]
+    #[ORM\ManyToOne(inversedBy: 'pizzas')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Category $category = null;
 
@@ -40,31 +40,27 @@ class Product
         return $this;
     }
 
-    public function getPrice(): ?int
+    public function getPicture(): ?string
     {
-        return $this->price;
+        return $this->picture;
     }
 
-    public function setPrice(int $price): self
+    public function setPicture(string $picture): self
     {
-        $this->price = $price;
+        $this->picture = $picture;
 
         return $this;
     }
 
-    public function getCategory(): ?category
+    public function getCategory(): ?Category
     {
         return $this->category;
     }
 
-    public function setCategory(?category $category): self
+    public function setCategory(?Category $category): self
     {
         $this->category = $category;
 
         return $this;
-    }
-
-    public function setDescription(string $string)
-    {
     }
 }

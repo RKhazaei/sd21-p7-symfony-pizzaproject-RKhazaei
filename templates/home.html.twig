@@ -1,21 +1,18 @@
 {% extends "base.html.twig" %}
 {% block body %}
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand p-2" href="#"> sopranos pizzaria</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-                <a class="nav-link active " href="#">Home </a>
-                <a class="nav-link " href="#">contact </a>
-                <a class="nav-link  justify-content-end" href="#">inloggen </a>
-
-
+    <div class="container-fluid">
+        <div class="row mt-5">
+        {% for category in category %}
+            <div class="col-sm-12 col-md-4 col-lg-4">
+                <div class="card" >
+                    <img src="{{ asset('img/' ~ category.picture) }}" style="height: 400px" class="img img-fluid card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ category.name }}</h5>
+                        <a href="{{ path('pizzas', {id: category.id}) }}" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
             </div>
+            {% endfor %}
         </div>
-    </nav>
-    <div>
-
     </div>
 {% endblock %}

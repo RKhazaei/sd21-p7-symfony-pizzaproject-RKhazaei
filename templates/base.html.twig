@@ -16,8 +16,33 @@
         {% endblock %}
     </head>
     <body>
-    <div class="container">
-        {% block body %}{% endblock %}
-    </div>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand p-2" href="#"> sopranos pizzaria</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link active " href="{{ path('home') }}">Home </a>
+                    <a class="nav-link " href="#">contact </a>
+                    <a class="nav-link  justify-content-end" href="#">inloggen </a>
+
+
+                </div>
+            </div>
+        </nav>
+        <div>
+            <img src="{{ asset('img/pizza-day-1.jpg') }}" style="height: 200px; width: 1920px">
+        </div>
+    {% block body %}{% endblock %}
     </body>
+<div class="row bg-dark fixed-bottom">
+    <div class="col-12">
+        <footer class="border-top border-4 border-danger text-light text-center">
+            <p>copyright sopranos 2023</p>
+        </footer>
+
+    </div>
+
+</div>
 </html>

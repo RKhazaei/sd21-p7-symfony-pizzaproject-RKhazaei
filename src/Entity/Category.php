@@ -21,9 +21,16 @@ class Category
     #[ORM\OneToMany(mappedBy: 'category', targetEntity: Product::class)]
     private Collection $yes;
 
+    #[ORM\OneToMany(mappedBy: 'category', targetEntity: Pizza::class)]
+    private Collection $pizzas;
+
+    #[ORM\Column(length: 255)]
+    private ?string $picture = null;
+
     public function __construct()
     {
         $this->yes = new ArrayCollection();
+        $this->pizzas = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -69,6 +76,48 @@ class Category
                 $ye->setCategory(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Pizza>
+     */
+    public function getPizzas(): Collection
+    {
+        return $this->pizzas;
+    }
+
+    public function addPizza(Pizza $pizza): self
+    {
+        if (!$this->pizzas->contains($pizza)) {
+            $this->pizzas->add($pizza);
+            $pizza->setCategory($this);
+        }
+
+        return $this;
+    }
+
+    public function removePizza(Pizza $pizza): self
+    {
+        if ($this->pizzas->removeElement($pizza)) {
+            // set the owning side to null (unless already changed)
+            if ($pizza->getCategory() === $this) {
+                $pizza->setCategory(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getPicture(): ?string
+    {
+        return $this->picture;
+    }
+
+    public function setPicture(string $picture): self
+    {
+        $this->picture = $picture;
 
         return $this;
     }

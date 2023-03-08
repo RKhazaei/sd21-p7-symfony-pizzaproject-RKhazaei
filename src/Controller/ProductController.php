@@ -26,9 +26,20 @@ class ProductController extends AbstractController
     }
 
     #[Route("/", name: "home")]
-    public function showHome(): Response
+    public function showHome(ManagerRegistry $doctrine): Response
     {
-        return $this->render("home.html.twig");
+
+        $category = $doctrine->getRepository(Category::class)->findAll();
+        // dd($products);
+        return $this->render("home.html.twig",['category'=> $category]);
+    }
+    #[Route("/pizzas/{id}", name: "pizzas")]
+    public function showPizza(ManagerRegistry $doctrine, $id): Response
+    {
+
+        $category = $doctrine->getRepository(Category::class)->find($id);
+        // dd($products);
+        return $this->render("pizzas.html.twig",['category'=> $category]);
     }
     #[Route('/product', name: 'product')]
     public function index(ManagerRegistry $doctrine): Response

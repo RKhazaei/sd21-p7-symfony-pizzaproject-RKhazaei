@@ -1,0 +1,18 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <div class="container-fluid">
+        <div class="row mt-5">
+        {% for pizza in category.pizzas %}
+            <div class="col-sm-12 col-md-4 col-lg-4">
+                <div class="card" style="">
+                    <img src="{{ asset('img/' ~ pizza.picture) }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ pizza.name }}</h5>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
