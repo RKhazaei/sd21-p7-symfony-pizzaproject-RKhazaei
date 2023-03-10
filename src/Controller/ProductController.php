@@ -41,6 +41,13 @@ class ProductController extends AbstractController
         // dd($products);
         return $this->render("pizzas.html.twig",['category'=> $category]);
     }
+
+    #[Route("/contact", name: "contact")]
+    public function showContact(): Response
+    {
+        return $this->render("contact.html.twig");
+    }
+
     #[Route('/product', name: 'product')]
     public function index(ManagerRegistry $doctrine): Response
     {

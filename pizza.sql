@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 08 mrt 2023 om 12:57
+-- Gegenereerd op: 10 mrt 2023 om 10:25
 -- Serverversie: 10.4.24-MariaDB
 -- PHP-versie: 8.1.6
 
@@ -98,7 +98,15 @@ CREATE TABLE `pizza` (
 --
 
 INSERT INTO `pizza` (`id`, `category_id`, `name`, `picture`) VALUES
-(1, 1, 'pepperoni', 'pepperoni.jpg');
+(1, 1, 'pepperoni', 'pepperoni.jpg'),
+(2, 1, 'pizza hawai', 'pizza-hawai.jpg'),
+(3, 1, 'pizza americana', 'pizza-americano.jpg'),
+(4, 3, 'salmon pizza', 'pizza-salmon.jpg'),
+(5, 3, 'shrimp pizza', 'pizza-shrimp.jpg'),
+(6, 3, 'pizza harring', 'pizza-harring.jpg'),
+(7, 2, 'pizza funghi', 'pizza-funghi.jpg'),
+(8, 2, 'pizza paprika', 'pizza-paprika.jpg'),
+(10, 2, 'pizza olives', 'pizza-olives.jpg');
 
 -- --------------------------------------------------------
 
@@ -172,7 +180,7 @@ ALTER TABLE `messenger_messages`
 -- AUTO_INCREMENT voor een tabel `pizza`
 --
 ALTER TABLE `pizza`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT voor een tabel `product`
