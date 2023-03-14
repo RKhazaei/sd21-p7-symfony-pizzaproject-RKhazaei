@@ -47,6 +47,12 @@ class ProductController extends AbstractController
     {
         return $this->render("contact.html.twig");
     }
+    #[Route("/login", name: "login")]
+    public function showLogin(): Response
+    {
+        return $this->render("login.html.twig");
+    }
+
 
     #[Route('/product', name: 'product')]
     public function index(ManagerRegistry $doctrine): Response
