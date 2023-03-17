@@ -3,9 +3,13 @@
 namespace App\Controller;
 
 use App\Entity\Category;
+use App\Entity\Order;
 use App\Entity\Product;
+use App\Form\PizzaFormType;
 use Doctrine\Persistence\ManagerRegistry;
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -51,6 +55,27 @@ class ProductController extends AbstractController
     public function showLogin(): Response
     {
         return $this->render("login.html.twig");
+    }
+    #[Route("/form", name: "form")]
+    public function showForm(Request $request): Response
+    {
+        $task = new Order();
+
+
+        $form = $this->createForm(PizzaFormType::class, $task);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $task = $form->getData();
+            
+            return $this->redirectToRoute('task_success');
+        }
+
+        return $this->renderForm('form.html.twig', [
+            'form' => $form,
+        ]);
+
     }
 
 
