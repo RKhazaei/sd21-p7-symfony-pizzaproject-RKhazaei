@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Order;
+use Doctrine\DBAL\Types\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -19,6 +20,7 @@ class PizzaFormType extends AbstractType
             ->add('adres',TextType::class)
             ->add('nummer', NumberType::class)
             ->add('email', TextType::class)
+            ->add('size',TextType::class)
             ->add('save', SubmitType::class)
         ;
     }

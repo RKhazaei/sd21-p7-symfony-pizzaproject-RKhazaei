@@ -29,6 +29,9 @@ class Order
     #[ORM\ManyToOne(inversedBy: 'orders')]
     private ?Pizza $pizza = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $size = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -90,6 +93,18 @@ class Order
     public function setPizza(?Pizza $pizza): self
     {
         $this->pizza = $pizza;
+
+        return $this;
+    }
+
+    public function getSize(): ?string
+    {
+        return $this->size;
+    }
+
+    public function setSize(string $size): self
+    {
+        $this->size = $size;
 
         return $this;
     }

@@ -6,13 +6,16 @@ use App\Entity\Category;
 use App\Entity\Order;
 use App\Entity\Product;
 use App\Form\PizzaFormType;
+use App\Repository\PizzaRepository;
 use App\Repository\ProductRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Config\Doctrine\Orm\EntityManagerConfig;
 
 class ProductController extends AbstractController
 {
@@ -57,10 +60,21 @@ class ProductController extends AbstractController
     {
         return $this->render("login.html.twig");
     }
+
+    #[Route("/bestel/{id}", name: "bestel")]
+    public function showBestel(ManagerRegistry $doctrine, $id): Response
+    {
+        $order = $doctrine->getRepository(Order::class)->find($id);
+//        dd($order);
+
+        return $this->render("bestel.html.twig", ['order'=>$order]);
+
+    }
+
     #[Route("/form/{id}", name: "form")]
 
 
-    public function showForm(ProductRepository $p,Request $request,int $id): Response
+    public function showForm(PizzaRepository $p,EntityManagerInterface $em,Request $request,int $id): Response
     {
         $order = new Order();
         $pizza= $p->find($id);
@@ -69,10 +83,11 @@ class ProductController extends AbstractController
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-        $order ->
             $order = $form->getData();
-            
-            return $this->redirectToRoute('home');
+            $order -> setPizza($pizza);
+            $em->persist($order);
+            $em->flush();
+            return $this->redirectToRoute('bestel', ['id' => $order -> getId()]);
         }
 
         return $this->renderForm('form.html.twig', [
