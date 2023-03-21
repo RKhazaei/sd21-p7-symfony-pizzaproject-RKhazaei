@@ -26,6 +26,9 @@ class Order
     #[ORM\Column(length: 255)]
     private ?string $email = null;
 
+    #[ORM\ManyToOne(inversedBy: 'orders')]
+    private ?Pizza $pizza = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -75,6 +78,18 @@ class Order
     public function setEmail(string $email): self
     {
         $this->email = $email;
+
+        return $this;
+    }
+
+    public function getPizza(): ?Pizza
+    {
+        return $this->pizza;
+    }
+
+    public function setPizza(?Pizza $pizza): self
+    {
+        $this->pizza = $pizza;
 
         return $this;
     }

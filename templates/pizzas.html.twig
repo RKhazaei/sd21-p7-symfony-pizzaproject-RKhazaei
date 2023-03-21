@@ -8,7 +8,7 @@
                     <img src="{{ asset('img/' ~ pizza.picture) }}"style="height: 400px" class="img img-fluid card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">{{ pizza.name }}</h5>
-                        <a href="#" class="btn btn-primary">bestellen</a>
+                        <a href="{{ path('form',{id=pizza.id}) }}" class="btn btn-primary">bestellen</a>
                         <select class="border-3px border-danger" name="size" id="">
                             <option value="0">Small</option>
                             <option value="1">medium</option>
