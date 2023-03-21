@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 21 mrt 2023 om 10:28
+-- Gegenereerd op: 21 mrt 2023 om 12:58
 -- Serverversie: 10.4.24-MariaDB
 -- PHP-versie: 8.1.6
 
@@ -64,7 +64,8 @@ INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_
 ('DoctrineMigrations\\Version20230308085021', '2023-03-08 09:50:37', 153),
 ('DoctrineMigrations\\Version20230308092409', '2023-03-08 10:24:23', 35),
 ('DoctrineMigrations\\Version20230321091912', '2023-03-21 10:19:22', 64),
-('DoctrineMigrations\\Version20230321092724', '2023-03-21 10:27:30', 179);
+('DoctrineMigrations\\Version20230321092724', '2023-03-21 10:27:30', 179),
+('DoctrineMigrations\\Version20230321114032', '2023-03-21 12:47:43', 42);
 
 -- --------------------------------------------------------
 
@@ -94,8 +95,23 @@ CREATE TABLE `order` (
   `adres` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `nummer` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `pizza_id` int(11) DEFAULT NULL
+  `pizza_id` int(11) DEFAULT NULL,
+  `size` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `order`
+--
+
+INSERT INTO `order` (`id`, `naam`, `adres`, `nummer`, `email`, `pizza_id`, `size`) VALUES
+(1, 'reza', 'afgf', '14767345', 'bdfg@gg.com', NULL, ''),
+(2, 'reza', 'afgf', '14767345', 'bdfg@gg.com', 1, ''),
+(3, 'reza', 'afgf', '14767345', 'bdfg@gg.com', 2, ''),
+(4, 'rezaad', 'afgf', '123567813', 'bdfg@gg.com', 1, ''),
+(5, 'rezaad', 'afgf', '123567813', 'bdfg@gg.com', 1, ''),
+(6, 'reza', 'afgf', '14767345', 'bdfg@gg.com', 1, ''),
+(7, 'reza', 'afgf', '14767345', 'bdfg@gg.com', 1, ''),
+(8, 'reza', 'afgf', '14767345', 'bdfg@gg.com', 1, '');
 
 -- --------------------------------------------------------
 
@@ -204,7 +220,7 @@ ALTER TABLE `messenger_messages`
 -- AUTO_INCREMENT voor een tabel `order`
 --
 ALTER TABLE `order`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT voor een tabel `pizza`
