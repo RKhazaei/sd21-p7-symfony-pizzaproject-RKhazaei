@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 21 mrt 2023 om 12:58
+-- Gegenereerd op: 22 mrt 2023 om 12:57
 -- Serverversie: 10.4.24-MariaDB
 -- PHP-versie: 8.1.6
 
@@ -104,14 +104,8 @@ CREATE TABLE `order` (
 --
 
 INSERT INTO `order` (`id`, `naam`, `adres`, `nummer`, `email`, `pizza_id`, `size`) VALUES
-(1, 'reza', 'afgf', '14767345', 'bdfg@gg.com', NULL, ''),
-(2, 'reza', 'afgf', '14767345', 'bdfg@gg.com', 1, ''),
-(3, 'reza', 'afgf', '14767345', 'bdfg@gg.com', 2, ''),
-(4, 'rezaad', 'afgf', '123567813', 'bdfg@gg.com', 1, ''),
-(5, 'rezaad', 'afgf', '123567813', 'bdfg@gg.com', 1, ''),
-(6, 'reza', 'afgf', '14767345', 'bdfg@gg.com', 1, ''),
-(7, 'reza', 'afgf', '14767345', 'bdfg@gg.com', 1, ''),
-(8, 'reza', 'afgf', '14767345', 'bdfg@gg.com', 1, '');
+(9, 'motje', 'hamboe straat672', '617235422', 'LMAO@gmail.com', 1, 'medium'),
+(10, 'motje', 'hamboe straat672', '617235422', 'LMAO@gmail.com', 8, 'medium');
 
 -- --------------------------------------------------------
 
@@ -220,7 +214,7 @@ ALTER TABLE `messenger_messages`
 -- AUTO_INCREMENT voor een tabel `order`
 --
 ALTER TABLE `order`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT voor een tabel `pizza`
