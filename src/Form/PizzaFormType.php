@@ -23,9 +23,10 @@ class PizzaFormType extends AbstractType
             ->add('email', TextType::class)
             ->add('size',ChoiceType::class,[
                 'choices'=> [
-                'small'=>'small',
                 'medium'=>'medium',
-                'large'=>'large'
+                'large'=>'large',
+                'calzone'=>'calzone'
+
             ]
     ])
 
