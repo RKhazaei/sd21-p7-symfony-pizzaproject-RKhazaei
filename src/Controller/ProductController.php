@@ -87,6 +87,7 @@ class ProductController extends AbstractController
             $order -> setPizza($pizza);
             $em->persist($order);
             $em->flush();
+            $this->addFlash('success','thank you for ordering at sopranos pizza' );
             return $this->redirectToRoute('bestel', ['id' => $order -> getId()]);
         }
 
