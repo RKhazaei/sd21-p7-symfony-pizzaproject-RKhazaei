@@ -1,0 +1,13 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <div class="col-12 col-sm-4 col-md-4 col-lg-6 justify-content-right mt-5">
+        <div class="border border-dark border-2 mb-2 ms-2">
+            <p>naam: {{ order.naam }}</p>
+            <p>bestelling: {{ order.pizza.name }}</p>
+            <p>bestelling: {{ order.size }}</p>
+            <img src="{{ asset('img/' ~ order.pizza.picture) }}" style="width: 200px" class="img ms-2 mb-2 card-img-top" alt="...">
+
+        </div>
+    </div>
+{% endblock %}

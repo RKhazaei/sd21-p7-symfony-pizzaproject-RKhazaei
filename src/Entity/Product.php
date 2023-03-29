@@ -63,4 +63,8 @@ class Product
 
         return $this;
     }
+
+    public function setDescription(string $string)
+    {
+    }
 }

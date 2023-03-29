@@ -3,11 +3,19 @@
 namespace App\Controller;
 
 use App\Entity\Category;
+use App\Entity\Order;
 use App\Entity\Product;
+use App\Form\PizzaFormType;
+use App\Repository\PizzaRepository;
+use App\Repository\ProductRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Config\Doctrine\Orm\EntityManagerConfig;
 
 class ProductController extends AbstractController
 {
@@ -26,10 +34,69 @@ class ProductController extends AbstractController
     }
 
     #[Route("/", name: "home")]
-    public function showHome(): Response
+    public function showHome(ManagerRegistry $doctrine): Response
     {
-        return $this->render("home.html.twig");
+
+        $category = $doctrine->getRepository(Category::class)->findAll();
+        // dd($products);
+        return $this->render("home.html.twig",['category'=> $category]);
     }
+    #[Route("/pizzas/{id}", name: "pizzas")]
+    public function showPizza(ManagerRegistry $doctrine, $id): Response
+    {
+
+        $category = $doctrine->getRepository(Category::class)->find($id);
+        // dd($products);
+        return $this->render("pizzas.html.twig",['category'=> $category]);
+    }
+
+    #[Route("/contact", name: "contact")]
+    public function showContact(): Response
+    {
+        return $this->render("contact.html.twig");
+    }
+    #[Route("/login", name: "login")]
+    public function showLogin(): Response
+    {
+        return $this->render("login.html.twig");
+    }
+
+    #[Route("/bestel/{id}", name: "bestel")]
+    public function showBestel(ManagerRegistry $doctrine, $id): Response
+    {
+        $order = $doctrine->getRepository(Order::class)->find($id);
+//        dd($order);
+
+        return $this->render("bestel.html.twig", ['order'=>$order]);
+
+    }
+
+    #[Route("/form/{id}", name: "form")]
+
+
+    public function showForm(PizzaRepository $p,EntityManagerInterface $em,Request $request,int $id): Response
+    {
+        $order = new Order();
+        $pizza= $p->find($id);
+
+        $form = $this->createForm(PizzaFormType::class, $order);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $order = $form->getData();
+            $order -> setPizza($pizza);
+            $em->persist($order);
+            $em->flush();
+            return $this->redirectToRoute('bestel', ['id' => $order -> getId()]);
+        }
+
+        return $this->renderForm('form.html.twig', [
+            'form' => $form,
+        ]);
+
+    }
+
+
     #[Route('/product', name: 'product')]
     public function index(ManagerRegistry $doctrine): Response
     {
